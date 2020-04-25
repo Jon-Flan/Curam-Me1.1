@@ -1,0 +1,29 @@
+<%- include ("../Partials/header") %> <!--Call header from partial file -->
+
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle">Tasks</h4>
+	</div>
+	<div class="TaskCard">
+		<%results.forEach(function(results){ %>
+			<div class="taskCardInner">
+				<div class="taskCardInner1">
+					<h5 class="taskDetail">Patient:</h5>
+					<h5 class="taskDetail">Bed No:</h5>
+					<h5 class="taskDetail">Task:<%=results.Details %></h5>
+					<h5 class="taskDetail">Time:<%= results.Time %></h5>
+					<h5 class="taskDetail">Assigned to:<%=results.S_ID %></h5>
+					<h5 class="taskDetail">Completed:<%= results.Completed %></h5>
+				</div>
+				<div class="taskCardInner2">
+					<button class="taskBtn">Do</button>
+				</div>
+			</div>
+			
+		<% }); %>
+	</div>
+</div>
+
+<%- include ("../Partials/footer") %>  <!--Call footer from partial file -->
+
+

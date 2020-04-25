@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Curám Mé</title> <!-- Title for page -->
+	<meta charset="utf-8"> <!--setting the character set -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Set the initial view port size-->
+
+	<!--Links to external files -->
+	<!--CSS File -->
+	<link rel="stylesheet" type="text/css" href="/style.css">
+	<link rel="stylesheet" type="text/css" href="/menuBar.css">
+	<!--Link to font awesome icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<!--Link to google fonts Sen Bold -->
+	<link href="https://fonts.googleapis.com/css?family=Sen:700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaina+2:wght@800&display=swap" rel="stylesheet">
+	<!-- JQuery Link -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+	<!-- Menu button interface -->
+	<div class="wrap">
+		<input type="checkbox" id="checking" style="display:none;">
+		<button class="blob" onclick="window.location.href='/';"><i class="fa fa-user-md" aria-hidden="true"></i></button>
+		<button class="blob" onclick="window.location.href='/patient';"><i class="fa fa-bed" aria-hidden="true"></i></button>
+		<button class="blob" onclick="window.location.href='/ward';"><i class="fa fa-hospital-o" aria-hidden="true"></i></button>
+
+		<label class="blob" for="checking"> <span class="bar"></span> <span class="bar"></span> <span class="bar"></span> </label>
+	</div>
+	<div class="wrapper"> <!-- wrapper for entire page -->
+
+	
+		<div class="logoWrapper">
+			<div class="title"><h3>Cúram Mé</h3></div>
+		</div>

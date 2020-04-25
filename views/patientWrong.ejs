@@ -1,0 +1,38 @@
+<%- include ("../Partials/header") %> <!--Call header from partial file -->
+<form name="SearchPatient" accept-charset="UTF-8" class="searchBox" action="/Search" method="post" onsubmit="return verify()">
+	
+		<div class="input-div searchInput"> <!-- inout wrapper for the userame and its animation -->
+					<div class="i">  <!-- div to hold the fontawesome graphic -->
+						<i class="fa fa-user"></i>  <!--font awesome graphic -->
+					</div>
+				
+					<div>  <!-- div just for the username input t-->
+						<h5 id="usernameInput">Patient ID</h5>  <!--Username heading (will be animated) -->
+						<input class="input" type="text" name="patientSearch" id="patientSearch" maxlength="15">  <!-- input space for the username -->	
+					</div>
+				</div>
+		<div class="searchBtnBox">
+			<button type="submit" class="searchBtn" value="Search" name="searchBtn"><i class="fa fa-search" aria-hidden="true"></i></button>
+		</div>
+	
+</form>
+
+<h4 class="wrongPatient">Incorrect Details</h4>
+<script>
+			function verify(){
+				var x = document.forms["SearchPatient"]["patientSearch"].value;
+
+				if(x == ""){
+					alert("Enter Patient ID");
+					return false //return false if all inputs aren't filled in
+				
+				}
+			}
+</script>
+
+			
+
+
+<%- include ("../Partials/footer") %>  <!--Call footer from partial file -->
+
+

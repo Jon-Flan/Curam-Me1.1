@@ -1,0 +1,58 @@
+<%- include ("../Partials/headerLogin") %> <!--Call header from partial file -->
+
+<!-- this section is for the logo and title, will be similar to the rest of the app but bigger and allinged different, the burger bar will not be present for this page -->
+
+<div class="login-container">
+	<div class="loginHeader"> <!-- Div for holding the logo and title -->
+		<div class="loginLogo"></div><!-- Div class for the logo -->
+		<div class="loginTitle">Cúram Mé</div> <!-- Div class for the titlle -->
+	</div>
+
+	<!-- this section is for the login form, responsive and animated -->
+	<div class="loginInputs"> <!-- main div wrapper for the login inputs-->
+		<form name="loginForm" accept-charset="UTF-8" action="/login" method="post" onsubmit="return verify()"> <!-- form submission for login with correct input veriication-->
+			
+			<div class="input-div loginInput1"> <!-- inout wrapper for the userame and its animation -->
+				<div class="i">  <!-- div to hold the fontawesome graphic -->
+					<i class="fa fa-user"></i>  <!--font awesome graphic -->
+				</div>
+			
+				<div>  <!-- div just for the username input t-->
+					<h5 id="usernameInput">Username</h5>  <!--Username heading (will be animated) -->
+					<input class="input" type="username" name="username" id="username">  <!-- input space for the username -->	
+				</div>
+			</div>
+			<div class="input-div loginInput2"> <!-- inout wrapper for the password and its animation -->
+				<div class="i">  <!-- div to hold the fontawesome graphic -->
+					<i class="fa fa-lock"></i>  <!--font awesome graphic -->
+				</div>
+			
+				<div>  <!-- div just for the password input -->
+					<h5 id="passwordInput">Password</h5>  <!--password heading (will be animated) -->
+					<input class="input" type="password" name="password" id="password">  <!-- input space for the password-->	
+				</div>
+
+			</div>
+
+			<!-- button for submitting input -->
+			<button type="submit" class="btn" value="Sign In" ><h3 class="btnText">Sign In</h3></button>  <!-- submit button-->
+
+		</form>
+	</div>
+</div>
+
+<!--Script for checking valid inputs in login form -->
+		<script>
+			function verify(){
+				var x = document.forms["loginForm"]["username"].value;
+				var y = document.forms["loginForm"]["password"].value;
+
+				if(x == "" || y ==""){
+					alert("All details must be filled in");
+					return false //return false if all inputs aren't filled in
+				}
+			}
+		</script>
+
+
+<%- include ("../Partials/footerLogin") %>  <!--Call footer from partial file -->

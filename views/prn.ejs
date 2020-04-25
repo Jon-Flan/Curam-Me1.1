@@ -1,0 +1,56 @@
+<%- include ("../Partials/header") %> <!--Call header from partial file -->
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle">Patient Details</h4>
+	</div>
+	<div class="patientDetailsCard">
+		<%results.forEach(function(results){ %>
+
+			<div class="patientInnerDetailsCard1">
+
+					<h4 class="patientDetailsTxt1">Name: <%= results.FName %> <%= results.LName %> </h4>
+					<h6 class="patientDetailsTxt1">Age:</h6>
+					<h6 class="patientDetailsTxt1">Gender: <%= results.Gender %> </h6>
+					<h6 class="patientDetailsTxt1">DOB: <%= results.DOB.toDateString() %> </h6>
+				
+			</div>
+			<div class="patientInnerDetailsCard2">
+				<br>
+				<h4 class="patientDetailsTxt2">PRN Medication:</h4>
+				<br>
+				<h4 class="patientDetailsTxt2">PRN History:</h4>
+				<form name="PRN_From" class="PRN_Form" accept-charset="UTF-8" action="" method="" onsubmit="return verify()">
+					<h4 class ="PRN_Title">PRN Dispense</h4>
+					<h6 class="PRN_Input_Titles">Medication</h6>
+					<input type="text" name="PRN" class="PRN_Input" maxlength="30">
+					<h6 class="PRN_Input_Titles">Reason</h6>
+					<input type="text" name="Reason" class="PRN_Input" maxlength="120">
+				</form>
+			</div>
+			<div class="patientBtnBox">
+				<button class="patientBtn" type="submit">Dispense</button>
+				<button class="patientBtn" onclick="window.location.href='/patientCorrect/<%= results.P_ID %>'">Back</button>
+			</div>
+
+		<% }); %>
+	</div>
+	
+
+</div>
+
+<script>
+			function verify(){
+				var x = document.forms["PRN_Form"]["PRN"].value;
+				var y = document.forms["PRN_Form"]["Reason"].value;
+
+				if(x == "" || y == ""){
+					alert("All Details Must be filled in");
+					return false //return false if all inputs aren't filled in
+				
+				}
+			}
+</script>
+
+<%- include ("../Partials/footer") %>  <!--Call footer from partial file -->
+
+

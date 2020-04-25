@@ -1,0 +1,42 @@
+<%- include ("../Partials/header") %> <!--Call header from partial file -->
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle">Patient Vitals</h4>
+	</div>
+	<div class="patientDetailsCard">
+		<%results.forEach(function(results){ %>
+			<div class="patientInnerDetailsCard1">
+				
+					<h4 class="patientDetailsTxt1">Name: <%= results.FName %> <%= results.LName %> </h4>
+					<h6 class="patientDetailsTxt1">Age:</h6>
+					<h6 class="patientDetailsTxt1">Gender: <%= results.Gender %> </h6>
+					<h6 class="patientDetailsTxt1">DOB: <%= results.DOB.toDateString() %> </h6>
+				
+			</div>
+			<div class="patientInnerDetailsCard2">
+				<br>
+				<h4 class="patientDetailsTxt2">Vitals History:</h4>
+				<br>
+				<form name="Vitals_From" class="Vitals_Form" accept-charset="UTF-8" action="" method="" onsubmit="return verify()">
+					<h4 class ="Vitals_Title">Vitals Update</h4>
+					<h6 class="Vitals_Input_Titles">Heart Rate</h6>
+					<input type="text" name="HR" class="Vitals_Input" maxlength="7">
+					<h6 class="Vitals_Input_Titles">Blood Pressure</h6>
+					<input type="text" name="BP" class="Vitals_Input" maxlength="12">
+					<h6 class="Vitals_Input_Titles">Fluids</h6>
+					<input type="text" name="Fluid" class="Vitals_Input" maxlength="12">
+				</form>
+			</div>
+			<div class="patientBtnBox">
+				<button class="patientBtn" type="submit">Update</button>
+				<button class="patientBtn" onclick="window.location.href='/patientCorrect/<%= results.P_ID %>';">Back</button>
+			</div>
+		<% }); %>
+	</div>
+	
+
+</div>
+
+<%- include ("../Partials/footer") %>  <!--Call footer from partial file -->
+
+
