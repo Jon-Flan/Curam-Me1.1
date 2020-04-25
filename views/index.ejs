@@ -48,7 +48,7 @@
 				var y = document.forms["loginForm"]["password"].value;
 
 				if(x == "" || y ==""){
-					alert("All details must be filled in");
+					Android.showToast("All details must be filled in");
 					return false //return false if all inputs aren't filled in
 				}
 			}
