@@ -43,15 +43,21 @@
 
 <!--Script for checking valid inputs in login form -->
 		<script>
-			function verify(){
+			function verify()
+			{
 				var x = document.forms["loginForm"]["username"].value;
 				var y = document.forms["loginForm"]["password"].value;
 
-				if(x == "" || y ==""){
-					Android.showToast("All details must be filled in");
+				if(x == "" || y =="")
+				{
+					showAndroidToast("Enter All Details");
 					return false //return false if all inputs aren't filled in
 				}
 			}
+
+			function showAndroidToast(toast){
+						Android.showToast(toast);
+					}	
 		</script>
 
 
