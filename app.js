@@ -117,12 +117,6 @@ app.get('/home', function(req,res){
 	
 });
 
-
-
-
-
-
-
 //route to patient search page
 app.get('/patient', function(req,res){
 	//check if the user is already logged in and redirect to the correct page
@@ -163,6 +157,24 @@ app.post('/Search',function(req,res)
 
 });
 
+//route to the patients  page back from the vitals page
+app.get('/patientCorrect/:P_ID', function(req, res){
+ //first check if the user is logged in and if not redirect to login page 
+ if(req.session.loggedin){
+		//connect to the databse and select the correct values
+		connection.query("select * FROM Patients where P_ID = ?;", [req.params.P_ID], function(error, results,fields){
+		if(results.length > 0){
+				res.render("patientCorrect",{results});
+			}else{
+				res.redirect("patient");
+			}
+		});	
+	}else{
+		res.redirect('/');
+		res.end();	
+	}	
+});
+
 //route to the patients vitals page
 app.get('/vitals/:P_ID', function(req, res){
  //first check if the user is logged in and if not redirect to login page 
@@ -181,23 +193,7 @@ app.get('/vitals/:P_ID', function(req, res){
 	}	
 });
 
-//route to the patients  page back from the vitals page
-app.get('/patientCorrect/:P_ID', function(req, res){
- //first check if the user is logged in and if not redirect to login page 
- if(req.session.loggedin){
-		//connect to the databse and select the correct values
-		connection.query("select * FROM Patients where P_ID = ?;", [req.params.P_ID], function(error, results,fields){
-		if(results.length > 0){
-				res.render("patientCorrect",{results});
-			}else{
-				res.redirect("patient");
-			}
-		});	
-	}else{
-		res.redirect('/');
-		res.end();	
-	}	
-});
+
 
 //route to the patients PRN page
 app.get('/prn/:P_ID', function(req, res){
