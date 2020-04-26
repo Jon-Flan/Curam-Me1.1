@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');//allow access to body parser
 var mysql = require('mysql');//alows access to mysql and connect to our database
 
 //create the connection variable for the database with all arguments for connection
-// *** The database is a secure server database and only white listed IP's can connect ***
+// *** The database is a secure server database and only white listed IP's can connect **
 var connection = mysql.createConnection({
 	host:'mysql4220.cp.blacknight.com',
 	user:'u1518531_user00',
