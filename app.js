@@ -76,7 +76,6 @@ app.post('/login', async(req,res) =>
 				req.session.username = results[0].S_ID;
 
 				//test outputs that will be adjusted later on
-				console.log(results[0].S_ID);
 				res.redirect("home");
 				res.end();
 			}else{
@@ -96,7 +95,6 @@ app.get('/home', function(req,res){
 	if(req.session.loggedin){
 		//connect to database and get tasks
 		connection.query("SELECT * FROM Tasks WHERE Date = ?;",[today], function(error, results, fields){
-			console.log(results);
 			if(results.length > 0){
 				res.render("home", {results});
 			}else{

@@ -23,11 +23,15 @@
 				var x = document.forms["SearchPatient"]["patientSearch"].value;
 
 				if(x == ""){
-					alert("Enter Patient ID");
+					showAndroidToast("Must Enter Patient ID");
 					return false //return false if all inputs aren't filled in
 				
 				}
 			}
+
+			function showAndroidToast(toast){
+						Android.showToast(toast);
+					}	
 </script>
 
 			
