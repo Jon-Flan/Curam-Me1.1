@@ -179,7 +179,7 @@ app.get('/vitals/:P_ID', function(req, res){
 
  if(req.session.loggedin){
 		//connect to the databse and select the correct values
-		connection.query("Select p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName as NurseFN, s.LName as NurseLN from Patients p, Vitals v, Staff s WHERE p.P_ID = ? and v.P_ID = p.P_ID and v.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName, s.LName Order by v.Date, v.Time;", [req.params.P_ID], function(error, results,fields){
+		connection.query("Select p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName as NurseFN, s.LName as NurseLN from Patients p, Vitals v, Staff s WHERE p.P_ID = ? and v.P_ID = p.P_ID and v.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName, s.LName Order by v.Date, v.Time Desc limit 1;", [req.params.P_ID], function(error, results,fields){
 		if(results.length > 0){
 				res.render("vitals",{results});
 			}else{
