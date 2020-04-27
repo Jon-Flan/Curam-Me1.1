@@ -217,12 +217,20 @@ app.get('/prn/:P_ID', function(req, res){
 //route to ward info page
 app.get('/ward', function(req,res){
 	//check if the user is already logged in and redirect to the correct page
-	if(req.session.loggedin){
-		res.render("ward");
+	 if(req.session.loggedin){
+		//connect to the databse and select the correct values
+		connection.query("Select w.Ward_Name as Ward, w.Bed_Count as Beds, p.P_ID, p.FName as PatientFN, p.LName as PatientLN, pd.Bed_No as PatientBedNo From Ward w, Patients p, Patient_Details pd, Staff s Where s.S_ID =? and s.W_ID = w.W_ID and pd.W_ID = w.W_ID and pd.W_ID = s.W_ID and p.P_ID = pd.P_ID Group by w.Ward_Name, w.Bed_Count,p.P_ID, p.FName, p.LName, pd.Bed_No;", [req.session.username], function(error, results,fields){
+		if(results.length > 0){
+				console.log(results);
+				res.render("ward",{results});
+			}else{
+				res.redirect("/");
+			}
+		});	
 	}else{
-		res.redirect("/");
-	}
-	res.end();
+		res.redirect('/');
+		res.end();	
+	}	
 });
 
 

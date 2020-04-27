@@ -1,6 +1,24 @@
 <%- include ("../partials/header") %> <!--Call header from partial file -->
 
-This page will be for the ward information
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle"><%=results[0].Ward%></h4>
+	</div>
+	<div class="TaskCard">
+		<%results.forEach(function(results){ %>
+			<div class="taskCardInner">
+				<div class="taskCardInner1">
+					<h5 class="taskDetail">Patient: <%=results.PatientFN%> <%=results.PatientLN%></h5>
+					<h5 class="taskDetail">Bed No: <%=results.PatientBedNo%></h5>
+				</div>
+				<div class="taskCardInner2">
+					<button class="taskBtn" onclick="window.location.href='/patientCorrect/<%= results.P_ID %>';">Details</button>
+				</div>
+			</div>
+			
+		<% }); %>
+	</div>
+</div>
 
 <%- include ("../partials/footer") %>  <!--Call footer from partial file -->
 
