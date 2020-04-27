@@ -199,7 +199,7 @@ app.get('/prn/:P_ID', function(req, res){
  //first check if the user is logged in and if not redirect to login page 
  if(req.session.loggedin){
 		//connect to the databse and select the correct values
-		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, prn.Meds_Allowed as Meds, prnd.Meds_Dispensed as MedsDispensed, prnd.Reason as Reason, prnd.Time as Time, prnd.Date as Date, s.FName as NurseFN, s.LName as NurseLN FROM Patients p, PRN prn, PRN_Dispense prnd, Staff s WHERE p.P_ID = ? and p.P_ID = prn.P_ID and prnd.P_ID = p.P_ID and prnd.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, prn.Meds_Allowed, prnd.Meds_Dispensed, prnd.Reason, prnd.Time, prnd.Date, s.FName, s.LName Order by prnd.Date, prnd.Time;", [req.params.P_ID], function(error, results,fields){
+		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, prn.Meds_Allowed as Meds, prnd.Meds_Dispensed as MedsDispensed, prnd.Reason as Reason, prnd.Time as Time, prnd.Date as Date, s.FName as NurseFN, s.LName as NurseLN FROM Patients p, PRN prn, PRN_Dispense prnd, Staff s WHERE p.P_ID = ? and p.P_ID = prn.P_ID and prnd.P_ID = p.P_ID and prnd.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, prn.Meds_Allowed, prnd.Meds_Dispensed, prnd.Reason, prnd.Time, prnd.Date, s.FName, s.LName Order by prnd.Date, prnd.Time Desc limit 1;", [req.params.P_ID], function(error, results,fields){
 		if(results.length > 0){
 				res.render("prn",{results});
 			}else{
