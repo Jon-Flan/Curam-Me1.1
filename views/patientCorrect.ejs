@@ -15,19 +15,18 @@
 				
 			</div>
 			<div class="patientInnerDetailsCard2">
-				<br>
-				<h4 class="patientDetailsTxt2">Ward: <%=results.Ward_Name%></h4>
-				<br>
-				<h4 class="patientDetailsTxt2">Bed No: <%=results.Bed%></h4>
-				<br>
-				<h4 class="patientDetailsTxt2">Risk: <%=results.Risk%></h4>
-				<br>
-				<h4 class="patientDetailsTxt2">Doctor: <%=results.Doctor%></h4>
-				<br>
-				<h4 class="patientDetailsTxt2">Diagnosis: <%=results.Diagnosis%></h4>
-				<br>
-				<h4 class="patientDetailsTxt2">Treatment: <%=results.Treatment%></h4>
-				<br>
+				<h4 class="patientDetailsTxt1">Ward:</h4>
+				<h6 class="patientDetailsTxt2"><%=results.Ward_Name%></h6>
+				<h4 class="patientDetailsTxt1">Bed No: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Bed%></h6>
+				<h4 class="patientDetailsTxt1">Risk: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Risk%></h6>
+				<h4 class="patientDetailsTxt1">Doctor: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Doctor%></h6>
+				<h4 class="patientDetailsTxt1">Diagnosis: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Diagnosis%></h6>
+				<h4 class="patientDetailsTxt1">Treatment: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Treatment%></h6>
 			</div>
 			<div class="patientBtnBox">
 				<button class="patientBtn" onclick="window.location.href='/vitals/<%= results.P_ID %>';">Vitals</button>

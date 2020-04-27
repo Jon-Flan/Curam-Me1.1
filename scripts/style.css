@@ -379,8 +379,9 @@ textarea{
 	border-radius: 10px;
 	width: 90%;
 	margin:5%;
-	padding-bottom: 2%
-	margin-bottom: 0px;
+	padding-top: 2%;
+	padding-bottom: 2%;
+
 }
 
 .patientDetailsTxt2{
