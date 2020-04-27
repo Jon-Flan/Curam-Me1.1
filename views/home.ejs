@@ -8,9 +8,9 @@
 		<%results.forEach(function(results){ %>
 			<div class="taskCardInner">
 				<div class="taskCardInner1">
-					<h5 class="taskDetail">Patient:</h5>
-					<h5 class="taskDetail">Bed No:</h5>
-					<h5 class="taskDetail">Task:<%=results.Details %></h5>
+					<h5 class="taskDetail">Patient:<%=results.FirstName%> <%=results.LastName%></h5>
+					<h5 class="taskDetail">Bed No:<%=results.Bed_No%></h5>
+					<h5 class="taskDetail">Task:<%=results.Task %></h5>
 					<h5 class="taskDetail">Time:<%= results.Time %></h5>
 					<h5 class="taskDetail">Assigned to:<%=results.S_ID %></h5>
 					<h5 class="taskDetail">Completed:<%= results.Completed %></h5>

@@ -9,10 +9,10 @@ var mysql = require('mysql');//alows access to mysql and connect to our database
 //create the connection variable for the database with all arguments for connection
 // *** The database is a secure server database and only white listed IP's can connect **
 var connection = mysql.createConnection({
-	host:'mysql4220.cp.blacknight.com',
-	user:'u1518531_user00',
-	password:'cU*@mM3^_q',
-	database:'db1518531_curamme'
+	host: 'mysql4341.cp.blacknight.com',
+	user: 'u1518531_user01',
+	password: 'cU*@mM3^_q',
+	database: 'db1518531_curammet'
 });
 
 connection.connect(function(error){
@@ -65,7 +65,7 @@ app.post('/login', async(req,res) =>
 
 	if(username && password){
 		//if there is a password and username, then create a query and send to the database
-		connection.query("SELECT * FROM Security WHERE Username = ? AND Password = ?;", [username, password], function(error, results, fields){
+		connection.query("SELECT s.S_ID as NurseID, s.FName as FirstName, s.LName as LastName, w.Ward_Name as WardName, w.W_ID as WardID, sec.Sec_ID as SecurityID FROM Staff s, Ward w, Security sec WHERE sec.Username = ? and sec.Password = ? and sec.S_ID = s.S_ID and s.W_ID = w.W_ID GROUP BY s.S_ID, s.FName, s.LName, w.Ward_Name, w.W_ID, sec.Sec_ID;", [username, password], function(error, results, fields){
 			//if there is a match then set the var user to the result at index 0, there should only be one result if details are correct
 			if(results.length > 0){
 				let user = results[0];
@@ -73,9 +73,7 @@ app.post('/login', async(req,res) =>
 				req.session.loggedin = true;
 				//set the username for the session to the staff id of the person who logged in, useful for adding records to the database now under that 
 				//staff persons ID
-				req.session.username = results[0].S_ID;
-
-				//test outputs that will be adjusted later on
+				req.session.username = results[0].NurseID;
 				res.redirect("home");
 				res.end();
 			}else{
@@ -90,11 +88,11 @@ app.post('/login', async(req,res) =>
 //route to home page
 app.get('/home', function(req,res){
 	//check if the user is already logged in and redirect to the correct page
-	var today = '2020-04-01';
+	var today = '2020-05-05';
 
 	if(req.session.loggedin){
 		//connect to database and get tasks
-		connection.query("SELECT * FROM Tasks WHERE Date = ?;",[today], function(error, results, fields){
+		connection.query("SELECT t.T_ID as Task_ID, p.FName as FirstName, p.LName as LastName, t.Details as Task, t.Time_Due as Time, t.Date_Due as Date, t.Completed as Completed, w.Ward_Name as Ward, pd.P_ID as PatientID, pd.Bed_No FROM Patients p, Tasks t, Ward w, Patient_Details pd, Staff n WHERE t.Date_Due = '2020-05-05' and n.S_ID = ? and w.W_ID = n.W_ID and p.P_ID = t.P_ID and pd.W_ID = w.W_ID and t.P_ID = pd.P_ID and t.Completed = false GROUP BY t.T_ID, p.FName, p.LName, t.Details, t.Time_Due, t.Date_Due, t.Completed, w.Ward_Name, pd.P_ID, pd.Bed_No;",[req.session.username], function(error, results, fields){
 			if(results.length > 0){
 				res.render("home", {results});
 			}else{
@@ -137,11 +135,10 @@ app.post('/Search',function(req,res)
 
 	if(req.session.loggedin)
 	{
-		connection.query("select * from Patients where P_ID = ?;", [patientID], function(error, results, fields)
+		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, pd.Diagnosis as Diagnosis, pd.Treatment as Treatment, pd.Doctor as Doctor, pd.Bed_No as Bed, w.Ward_Name, pd.Risk as Risk FROM Patients p, Patient_Details pd, Ward w WHERE p.P_ID = ? and p.P_ID = pd.P_ID and pd.W_ID = w.W_ID GROUP BY p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, pd.Diagnosis, pd.Treatment, pd.Doctor, pd.Bed_No, w.Ward_Name, pd.Risk;", [patientID], function(error, results, fields)
 		{
 			if(results.length > 0)
 			{
-				
 				res.render("patientCorrect",{results});
 			}else
 				res.render("patientWrong");
@@ -160,9 +157,10 @@ app.post('/Search',function(req,res)
 //route to the patients  page back from the vitals page
 app.get('/patientCorrect/:P_ID', function(req, res){
  //first check if the user is logged in and if not redirect to login page 
+
  if(req.session.loggedin){
 		//connect to the databse and select the correct values
-		connection.query("select * FROM Patients where P_ID = ?;", [req.params.P_ID], function(error, results,fields){
+		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, pd.Diagnosis as Diagnosis, pd.Treatment as Treatment, pd.Doctor as Doctor, pd.Bed_No as Bed, w.Ward_Name, pd.Risk as Risk FROM Patients p, Patient_Details pd, Ward w WHERE p.P_ID = ? and p.P_ID = pd.P_ID and pd.W_ID = w.W_ID GROUP BY p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, pd.Diagnosis, pd.Treatment, pd.Doctor, pd.Bed_No, w.Ward_Name, pd.Risk;", [req.params.P_ID], function(error, results,fields){
 		if(results.length > 0){
 				res.render("patientCorrect",{results});
 			}else{
@@ -178,9 +176,10 @@ app.get('/patientCorrect/:P_ID', function(req, res){
 //route to the patients vitals page
 app.get('/vitals/:P_ID', function(req, res){
  //first check if the user is logged in and if not redirect to login page 
+
  if(req.session.loggedin){
 		//connect to the databse and select the correct values
-		connection.query("select * FROM Patients where P_ID = ?;", [req.params.P_ID], function(error, results,fields){
+		connection.query("Select p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName as NurseFN, s.LName as NurseLN from Patients p, Vitals v, Staff s WHERE p.P_ID = ? and v.P_ID = p.P_ID and v.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName, s.LName Order by v.Date, v.Time;", [req.params.P_ID], function(error, results,fields){
 		if(results.length > 0){
 				res.render("vitals",{results});
 			}else{
@@ -200,7 +199,7 @@ app.get('/prn/:P_ID', function(req, res){
  //first check if the user is logged in and if not redirect to login page 
  if(req.session.loggedin){
 		//connect to the databse and select the correct values
-		connection.query("select * FROM Patients where P_ID = ?;", [req.params.P_ID], function(error, results,fields){
+		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, prn.Meds_Allowed as Meds, prnd.Meds_Dispensed as MedsDispensed, prnd.Reason as Reason, prnd.Time as Time, prnd.Date as Date, s.FName as NurseFN, s.LName as NurseLN FROM Patients p, PRN prn, PRN_Dispense prnd, Staff s WHERE p.P_ID = ? and p.P_ID = prn.P_ID and prnd.P_ID = p.P_ID and prnd.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, prn.Meds_Allowed, prnd.Meds_Dispensed, prnd.Reason, prnd.Time, prnd.Date, s.FName, s.LName Order by prnd.Date, prnd.Time;", [req.params.P_ID], function(error, results,fields){
 		if(results.length > 0){
 				res.render("prn",{results});
 			}else{
