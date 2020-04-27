@@ -259,6 +259,7 @@ textarea{
 	background-position: right;
 }
 
+
 /** styling for patient search input and search button **/
 .searchBox{
 	position: absolute;
@@ -338,9 +339,17 @@ textarea{
 
 }
 
+.patientBtnBox2{
+	width: 100%;
+	height: 10%;
+	top: 90%;
+	padding-left: 5%;
+
+}
+
 .patientBtn{
 	display: inline-block;
-	width: 25%;
+	width: 32%;
 	height: 30px;
 	border-radius: 25px;
 	font-size: 1rem;
@@ -359,6 +368,30 @@ textarea{
 }
 
 .patientBtn:hover{
+	background-position: right;
+}
+
+.patientBtn2{
+	display: inline-block;
+	width: 30%;
+	height: 30px;
+	border-radius: 25px;
+	font-size: 1rem;
+	outline: none;
+	border:none;
+	background-image: linear-gradient(to right, #f85032, #e73827);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Baloo Bhaina 2", cursive;
+	background-size: 200%;
+	transition: .5s;
+	margin-left: 5%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.patientBtn2:hover{
 	background-position: right;
 }
 

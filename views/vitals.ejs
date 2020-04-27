@@ -25,19 +25,22 @@
 			</div>
 
 			<div class="patientInnerDetailsCard2">
-				<form name="Vitals_From" class="Vitals_Form" accept-charset="UTF-8" action="" method="" onsubmit="return verify()">
+				<form name="Vitals_Form" id="Vitals_Form" class="Vitals_Form" accept-charset="UTF-8" action="/Vitals/<%=results.P_ID%>" method="post">
 					<h4 class ="Vitals_Title">Vitals Update</h4>
 					<h6 class="Vitals_Input_Titles">Heart Rate</h6>
-					<input type="text" name="HR" class="Vitals_Input" maxlength="7">
+					<input type="text" name="HR" id="HR" class="Vitals_Input" maxlength="7" required="required">
 					<h6 class="Vitals_Input_Titles">Blood Pressure</h6>
-					<input type="text" name="BP" class="Vitals_Input" maxlength="12">
+					<input type="text" name="BP" id="BP" class="Vitals_Input" maxlength="12" required="required">
 					<h6 class="Vitals_Input_Titles">Fluids</h6>
-					<input type="text" name="Fluid" class="Vitals_Input" maxlength="12">
+					<input type="text" name="Fluid" id="Fluid" class="Vitals_Input" maxlength="250" required="required">
+
+					<div class="patientBtnBox">
+						<button class="patientBtn" type="submit">Update</button>
+					</div>
 				</form>
-				<div class="patientBtnBox">
-					<button class="patientBtn" type="submit">Update</button>
-					<button class="patientBtn" onclick="window.location.href='/patientCorrect/<%= results.P_ID %>';">Back</button>
-				</div>
+				<div class="patientBtnBox2">
+					<button class="patientBtn2" onclick="window.location.href='/patientCorrect/<%= results.P_ID %>'">Back</button>
+				</div>	
 			</div>
 			
 		<% }); %>
@@ -45,6 +48,8 @@
 	
 
 </div>
+
+
 
 <%- include ("../partials/footer") %>  <!--Call footer from partial file -->
 

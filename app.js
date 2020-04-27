@@ -192,6 +192,32 @@ app.get('/vitals/:P_ID', function(req, res){
 	}	
 });
 
+//post the new vitals to the database and reload vitals page
+app.post('/Vitals/:P_ID', function(req, res)
+{
+	var HR = req.body.HR;
+	var BP = req.body.BP;
+	var Fluids = req.body.Fluid;
+	var time = new Date().toLocaleTimeString();
+
+	try{
+		connection.query("INSERT INTO Vitals (V_ID, P_ID, HR, BP, Fluids, Time, Date, S_ID) VALUES(Null, ?, ?, ?, ?, ?, '2020-05-05', ?);",[req.params.P_ID, HR, BP, Fluids, time, req.session.username ] , function(err, results, fields){
+			if(err)throw err;
+			console.log("1 record inserted")
+		});
+		connection.query("Select p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName as NurseFN, s.LName as NurseLN from Patients p, Vitals v, Staff s WHERE p.P_ID = ? and v.P_ID = p.P_ID and v.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, v.HR, v.BP, v.Fluids, v.Time, v.Date, s.FName, s.LName Order by v.Date, v.Time Desc limit 1;", [req.params.P_ID], function(error, results,fields){
+		if(results.length > 0){
+				res.render("vitals",{results});
+			}else{
+				res.redirect("patient");
+			}
+		});		
+	}catch(err){
+		console.log("error inserting record")
+		redirect("home");
+	}
+});
+
 
 
 //route to the patients PRN page
@@ -210,6 +236,30 @@ app.get('/prn/:P_ID', function(req, res){
 		res.redirect('/');
 		res.end();	
 	}	
+});
+
+//post the new PRN info to the database and reload PRN Page with new data
+app.post('/Prn/:P_ID', function(req,res){
+	var PRN = req.body.PRN;
+	var Reason = req.body.Reason;
+	var time = new Date().toLocaleTimeString();
+
+	try{
+		connection.query("INSERT INTO PRN_Dispense (Disp_ID, P_ID, Meds_Dispensed, Reason, S_ID, Time, Date) VALUES(Null, ?, ?, ?, ?, ?, '2020-05-05');",[req.params.P_ID, PRN, Reason, req.session.username, time], function(err, results, fields){
+			if(err)throw err;
+			console.log("1 record inserted");
+		});
+		connection.query("SELECT p.P_ID, p.FName as FName, p.LName as LName, p.DOB as DOB, p.Age as Age, p.Gender as Gender, p.Allergies as Allergies, prn.Meds_Allowed as Meds, prnd.Meds_Dispensed as MedsDispensed, prnd.Reason as Reason, prnd.Time as Time, prnd.Date as Date, s.FName as NurseFN, s.LName as NurseLN FROM Patients p, PRN prn, PRN_Dispense prnd, Staff s WHERE p.P_ID = ? and p.P_ID = prn.P_ID and prnd.P_ID = p.P_ID and prnd.S_ID = s.S_ID Group by p.P_ID, p.FName, p.LName, p.DOB, p.Age, p.Gender, p.Allergies, prn.Meds_Allowed, prnd.Meds_Dispensed, prnd.Reason, prnd.Time, prnd.Date, s.FName, s.LName Order by prnd.Date, prnd.Time Desc limit 1;", [req.params.P_ID], function(error, results,fields){
+		if(results.length > 0){
+				res.render("prn",{results});
+			}else{
+				res.redirect("patient");
+			}
+		});		
+	}catch(err){
+		console.log("error inserting record");
+		redirect("home");
+	}
 });
 
 
