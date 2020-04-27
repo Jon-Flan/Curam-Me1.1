@@ -321,7 +321,7 @@ textarea{
 
 .patientDetailsCard{
 	position: absolute;
-	top: 23%;
+	top: 25%;
 	overflow: auto;
 	border: 2px solid #2b32b2;
 	border-radius: 10px;
@@ -467,7 +467,7 @@ textarea{
 
 .TaskCard{
 	position: absolute;
-	top: 23%;
+	top: 25%;
 	overflow: auto;
 	border: 2px solid #2b32b2;
 	border-radius: 10px;
