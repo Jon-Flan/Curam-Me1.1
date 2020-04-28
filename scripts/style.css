@@ -201,10 +201,14 @@ textarea{
 	font-family: 'Poppins', sans-serif;
 	background-size: 200%;
 	transition: .5s;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .btn:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 
@@ -252,10 +256,14 @@ textarea{
 	margin-top: 2%;
 	margin-bottom: 2%;
 	margin-left: 5%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn4:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 #taskDone_Form{
@@ -299,10 +307,14 @@ textarea{
 	position: absolute;
 	top:90%;
 	left: 70%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .btn2:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 
@@ -334,10 +346,14 @@ textarea{
 	font-family: 'Poppins', sans-serif;
 	background-size: 200%;
 	transition: .5s;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .searchBtn:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 /** styling for wrong patient search page**/
@@ -418,10 +434,14 @@ textarea{
 	margin-left: 5%;
 	margin-top: 2%;
 	margin-bottom: 2%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn2{
@@ -442,10 +462,14 @@ textarea{
 	margin-left: 5%;
 	margin-top: 2%;
 	margin-bottom: 2%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn2:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn3{
@@ -466,10 +490,14 @@ textarea{
 	margin-left: 5%;
 	margin-top: 2%;
 	margin-bottom: 2%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .patientBtn3:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 
@@ -638,10 +666,14 @@ textarea{
 	position: absolute;
 	top:90%;
 	right: 70%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .taskBtn4:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 
@@ -671,10 +703,14 @@ textarea{
 	background-size: 200%;
 	transition: .5s;
 	margin-top: 15%;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 .taskBtn:hover{
 	background-position: right;
+	-webkit-tap-highlight-color:rgba(0, 0, 0, 0);
+ 	-webkit-tap-highlight-color:transparent;
 }
 
 
