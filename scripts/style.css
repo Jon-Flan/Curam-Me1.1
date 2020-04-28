@@ -347,6 +347,13 @@ textarea{
 
 }
 
+.patientBtnBox3{
+	width: 100%;
+	height: 10%;
+	top: 90%;
+
+}
+
 .patientBtn{
 	display: inline-block;
 	width: 32%;
@@ -394,6 +401,31 @@ textarea{
 .patientBtn2:hover{
 	background-position: right;
 }
+
+.patientBtn3{
+	display: inline-block;
+	width: 32%;
+	height: 30px;
+	border-radius: 25px;
+	font-size: 1rem;
+	outline: none;
+	border:none;
+	background-image: linear-gradient(to right, #f85032, #e73827);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Baloo Bhaina 2", cursive;
+	background-size: 200%;
+	transition: .5s;
+	margin-left: 5%;
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.patientBtn3:hover{
+	background-position: right;
+}
+
 
 .patientInnerDetailsCard1{
 	display: inline-block;

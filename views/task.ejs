@@ -1,0 +1,37 @@
+<%- include ("../partials/header") %> <!--Call header from partial file -->
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle">Task</h4>
+	</div>
+	<div class="patientDetailsCard">
+		<%results.forEach(function(results){ %>
+			<div class="patientInnerDetailsCard1">
+			
+					<h4 class="patientDetailsTxt1">Name: <%= results.FirstName %> <%= results.LastName %> </h4>
+					<h6 class="patientDetailsTxt1">Ward:<%= results.Ward%></h6>
+					<h6 class="patientDetailsTxt1">Bed Number: <%= results.Bed_No %> </h6>
+				
+			</div>
+			<div class="patientInnerDetailsCard2">
+				<h4 class="patientDetailsTxt1">Task: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Task%></h6>
+				<h4 class="patientDetailsTxt1">Time Due: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Time%></h6>
+				<h4 class="patientDetailsTxt1">Date Due: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Date.toDateString()%></h6>
+				<h4 class="patientDetailsTxt1">Completed: </h4>
+				<h6 class="patientDetailsTxt2"><%=results.Completed%></h6>
+			</div>
+			<div class="patientBtnBox">
+					<button class="patientBtn" type="submit" onclick="window.location.href='/home'">Done</button>
+			</div>
+			<div class="patientBtnBox3">
+					<button class="patientBtn3" onclick="window.location.href='/home'">Back</button>
+				</div>
+		<% }); %>
+	</div>
+	
+
+</div>
+
+<%- include ("../partials/footer") %>  <!--Call footer from partial file -->

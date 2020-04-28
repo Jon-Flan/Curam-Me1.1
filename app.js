@@ -94,6 +94,14 @@ app.get('/home', function(req,res){
 		//connect to database and get tasks
 		connection.query("SELECT t.T_ID as Task_ID, p.FName as FirstName, p.LName as LastName, t.Details as Task, t.Time_Due as Time, t.Date_Due as Date, t.Completed as Completed, w.Ward_Name as Ward, pd.P_ID as PatientID, pd.Bed_No FROM Patients p, Tasks t, Ward w, Patient_Details pd, Staff n WHERE t.Date_Due = '2020-05-05' and n.S_ID = ? and w.W_ID = n.W_ID and p.P_ID = t.P_ID and pd.W_ID = w.W_ID and t.P_ID = pd.P_ID and t.Completed = false GROUP BY t.T_ID, p.FName, p.LName, t.Details, t.Time_Due, t.Date_Due, t.Completed, w.Ward_Name, pd.P_ID, pd.Bed_No;",[req.session.username], function(error, results, fields){
 			if(results.length > 0){
+				//change the integer boolean value from the databse to yes or no for easier readability
+				results.forEach(function(results){
+					if(results.Completed == 1){
+					results.Completed = 'Yes';
+					}else{
+						results.Completed = 'No'
+					}
+				})
 				res.render("home", {results});
 			}else{
 				results = [{
@@ -114,6 +122,33 @@ app.get('/home', function(req,res){
 	}
 	
 });
+
+//route to the selected task
+app.get('/task/:T_ID', function(req,res){
+	//check if the user is already logged in and redirect to the correct page
+	if(req.session.loggedin){
+		//get the ask information from the database
+		connection.query("SELECT t.T_ID as Task_ID, p.FName as FirstName, p.LName as LastName, t.Details as Task, t.Time_Due as Time, t.Date_Due as Date, t.Completed as Completed, w.Ward_Name as Ward, pd.P_ID as PatientID, pd.Bed_No FROM Patients p, Tasks t, Ward w, Patient_Details pd, Staff n WHERE t.T_ID = ? and p.P_ID = t.P_ID and t.P_ID = pd.P_ID and w.W_ID = n.W_ID and pd.W_ID = w.W_ID GROUP BY t.T_ID, p.FName, p.LName, t.Details, t.Time_Due, t.Date_Due, t.Completed, w.Ward_Name, pd.P_ID, pd.Bed_No;",[req.params.T_ID], function(error, results, fields){
+			if(results.length > 0)
+			{	
+				results.forEach(function(results){
+					if(results.Completed == 1){
+					results.Completed = 'Yes';
+					}else{
+						results.Completed = 'No'
+					}
+				})
+				res.render("task",{results});
+			}else
+				res.redirect("home");
+		})
+
+	}else{
+		res.redirect("/");
+		res.end();
+	}
+
+})
 
 //route to patient search page
 app.get('/patient', function(req,res){

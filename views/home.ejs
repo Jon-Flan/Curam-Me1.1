@@ -2,7 +2,7 @@
 
 <div class="insideWrapper">
 	<div class="pageTitle">
-		<h4 class="detailsTitle">Tasks</h4>
+		<h4 class="detailsTitle">Tasks - To Do</h4>
 	</div>
 	<div class="TaskCard">
 		<%results.forEach(function(results){ %>
@@ -16,7 +16,7 @@
 					<h5 class="taskDetail">Completed:<%= results.Completed %></h5>
 				</div>
 				<div class="taskCardInner2">
-					<button class="taskBtn">Do</button>
+					<button class="taskBtn" onclick="window.location.href='/task/<%=results.Task_ID%>'">Do</button>
 				</div>
 			</div>
 			
