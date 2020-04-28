@@ -22,9 +22,11 @@
 				<h4 class="patientDetailsTxt1">Completed: </h4>
 				<h6 class="patientDetailsTxt2"><%=results.Completed%></h6>
 			</div>
-			<div class="patientBtnBox">
-					<button class="patientBtn" type="submit" onclick="window.location.href='/home'">Done</button>
-			</div>
+			<form name="taskDone_Form" id="taskDone_Form" accept-charset="UTF-8" action="/taskDone/<%=results.Task_ID%>" method="post">
+				<div class="patientBtnBox">
+						<input class="patientBtn4" type="submit"></input>
+				</div>
+			</form>
 			<div class="patientBtnBox3">
 					<button class="patientBtn3" onclick="window.location.href='/home'">Back</button>
 				</div>

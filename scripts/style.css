@@ -234,6 +234,35 @@ textarea{
 	height: 65%;
 }
 
+.patientBtn4{
+	display: inline-block;
+	width: 32%;
+	height: 30px;
+	border-radius: 25px;
+	font-size: 1rem;
+	outline: none;
+	border:none;
+	background-image: linear-gradient(to right, #0073e6, #0080ff,#0073e6);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: "Baloo Bhaina 2", cursive;
+	background-size: 200%;
+	transition: .5s;
+	margin-top: 2%;
+	margin-bottom: 2%;
+	margin-left: 5%;
+}
+
+.patientBtn4:hover{
+	background-position: right;
+}
+
+#taskDone_Form{
+	width: 100%;
+	margin-left: 0px;
+}
+
 
 /** styling for logo at the top of all pages except login **/
 .title{
@@ -334,7 +363,7 @@ textarea{
 	text-transform: uppercase;
 	font-family: "Baloo Bhaina 2", cursive;
 	color: red;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .patientDetailsCard{
@@ -442,6 +471,8 @@ textarea{
 .patientBtn3:hover{
 	background-position: right;
 }
+
+
 
 
 .patientInnerDetailsCard1{

@@ -178,6 +178,51 @@ app.get('/completed', function(req,res){
 	}
 });
 
+//route to log a task done in database
+app.post('/taskDone/:Task_ID', function(req,res){
+	var time = new Date().toLocaleTimeString();
+	var t_ID = Number(req.params.Task_ID);
+	//check if the user is already logged in and redirect to the correct page
+	if(req.session.loggedin){
+		try{
+		connection.query("UPDATE Tasks SET Completed = true, Time_Completed = ?, Date_Completed = '2020-05-05', S_ID = ? WHERE T_ID = ? ;",[time, req.session.username, t_ID] , function(err, results, fields){
+			if(err)throw err;
+			console.log("1 record inserted")
+		});
+		connection.query("SELECT t.T_ID as Task_ID, p.FName as FirstName, p.LName as LastName, t.Details as Task, t.Time_Due as Time, t.Date_Due as Date, t.Completed as Completed, w.Ward_Name as Ward, pd.P_ID as PatientID, pd.Bed_No FROM Patients p, Tasks t, Ward w, Patient_Details pd, Staff n WHERE t.Date_Due = '2020-05-05' and n.S_ID = ? and w.W_ID = n.W_ID and p.P_ID = t.P_ID and pd.W_ID = w.W_ID and t.P_ID = pd.P_ID and t.Completed = false GROUP BY t.T_ID, p.FName, p.LName, t.Details, t.Time_Due, t.Date_Due, t.Completed, w.Ward_Name, pd.P_ID, pd.Bed_No;",[req.session.username], function(error, results, fields){
+			if(results.length > 0){
+				//change the integer boolean value from the databse to yes or no for easier readability
+				results.forEach(function(results){
+					if(results.Completed == 1){
+					results.Completed = 'Yes';
+					}else{
+						results.Completed = 'No'
+					}
+				})
+				res.render("home", {results});
+			}else{
+				results = [{
+					T_ID:'1',
+					P_ID:'1',
+					Details:'None',
+					Time:'none',
+					Date:'none',
+					Completed:'no',
+					S_ID:'1'
+				}]
+				res.render("home", {results});
+			}
+		})
+	}catch(err){
+		console.log("error inserting record")
+		redirect("home");
+	}
+	}else{
+		res.redirect("/");
+		res.end();
+	}
+})
+
 //route to patient search page
 app.get('/patient', function(req,res){
 	//check if the user is already logged in and redirect to the correct page
