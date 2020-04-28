@@ -1,0 +1,39 @@
+<%- include ("../partials/header") %> <!--Call header from partial file -->
+
+<div class="insideWrapper">
+	<div class="pageTitle">
+		<h4 class="detailsTitle">Tasks - Completed</h4>
+	</div>
+	<div class="TaskCard">
+		<%results.forEach(function(results){ %>
+			<div class="taskCardInner">
+				<div class="taskCardInner1">
+					
+					<h5 class="patientDetailsTxt1">Patient: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.FirstName%> <%=results.LastName%></h6>
+					<h5 class="patientDetailsTxt1">Ward: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Ward%></h6>
+					<h5 class="patientDetailsTxt1">Bed No: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Bed_No%></h6>
+					<h5 class="patientDetailsTxt1">Time Due: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Time_Due%></h6>
+					<h5 class="patientDetailsTxt1">Date Due: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Date_Due.toDateString()%></h6>
+					<h5 class="patientDetailsTxt1">Time Completed: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Time_Completed%></h6>
+					<h5 class="patientDetailsTxt1">Date Compeleted: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.Date_Completed.toDateString()%></h6>
+					<h5 class="patientDetailsTxt1">Completed by: </h5>
+					<h6 class="patientDetailsTxt2"><%=results.NurseFN%> <%=results.NurseLN%></h6>
+
+				</div>
+			</div>
+			
+		<% }); %>
+	</div>
+</div>
+</div>
+	<button class="taskBtn4" onclick="window.location.href='/home'">To Do</button>
+</div>
+
+<%- include ("../partials/footer") %>  <!--Call footer from partial file -->

@@ -12,7 +12,6 @@
 					<h5 class="taskDetail">Bed No:<%=results.Bed_No%></h5>
 					<h5 class="taskDetail">Task:<%=results.Task %></h5>
 					<h5 class="taskDetail">Time:<%= results.Time %></h5>
-					<h5 class="taskDetail">Assigned to:<%=results.S_ID %></h5>
 					<h5 class="taskDetail">Completed:<%= results.Completed %></h5>
 				</div>
 				<div class="taskCardInner2">
@@ -22,7 +21,8 @@
 			
 		<% }); %>
 	</div>
-</div>
+	<button class="taskBtn4" onclick="window.location.href='/completed'">Completed</button>
+	</div>
 
 <%- include ("../partials/footer") %>  <!--Call footer from partial file -->
 

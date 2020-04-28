@@ -150,6 +150,34 @@ app.get('/task/:T_ID', function(req,res){
 
 })
 
+//route to view completed tasks
+app.get('/completed', function(req,res){
+	//check if the user is already logged in and redirect to the correct page
+	var today = '2020-05-05';
+
+	if(req.session.loggedin){
+		//connect to database and get the ward ID for the staff member and use in the query to find all completed tasks for that ward
+		connection.query("SELECT W_ID FROM Staff WHERE S_ID = ?",[req.session.username], function(error, results, fields){
+			if(results.length > 0){
+				var W_ID = results[0].W_ID;
+				connection.query("SELECT p.FName as FirstName, p.LName as LastName, t.Details as Task, t.Time_Due as Time_Due, t.Date_Due as Date_Due,t.Time_Completed as Time_Completed, t.Date_Completed as Date_Completed, t.Completed as Completed, pd.Bed_No, n.FName as NurseFN, n.LName as NurseLN, w.Ward_Name as Ward, pd.P_ID FROM Patients p, Tasks t, Staff n, Ward w, Patient_Details pd WHERE t.Date_Due = '2020-05-05' and w.W_ID = ? and p.P_ID = t.P_ID and pd.W_ID = w.W_ID and t.P_ID = pd.P_ID and t.Completed = true and n.S_ID = t.S_ID GROUP BY p.FName, p.LName, t.Details, t.Time_Due, t.Date_Due,t.Time_Completed, t.Date_Completed, t.Completed, n.FName, n.LName, w.Ward_Name, pd.P_ID, pd.Bed_No;",[W_ID], function(error,results,fields){
+					if(results.length > 0)
+					{
+					res.render("completed", {results});
+					}else
+					res.render("noCompleted");
+					})
+			}else{
+				
+				res.redirect("home");
+			}
+		})
+	}else{
+		res.redirect("/");
+		res.end();
+	}
+});
+
 //route to patient search page
 app.get('/patient', function(req,res){
 	//check if the user is already logged in and redirect to the correct page

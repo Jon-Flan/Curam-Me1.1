@@ -217,6 +217,23 @@ textarea{
 	font-size: 35px;
 }
 
+/** styling for no completed tasks page **/
+.wrongCompleted{
+	text-transform: uppercase;
+	font-family: "Baloo Bhaina 2", cursive;
+	color: blue;
+	font-size: 20px;
+	margin-left: 15%;
+}
+
+.TaskCardNone{
+	position: absolute;
+	top: 25%;
+	overflow: auto;
+	width: 85%;
+	height: 65%;
+}
+
 
 /** styling for logo at the top of all pages except login **/
 .title{
@@ -569,6 +586,31 @@ textarea{
 
 .taskDetail{
 	margin-left: 2%;
+}
+
+.taskBtn4{
+	display: block;
+	width: 25%;
+	height: 30px;
+	border-radius: 25px;
+	margin: 1rem 0;
+	font-size: .9rem;
+	outline: none;
+	border:none;
+	background-image: linear-gradient(to right, #f85032, #e73827);
+	cursor: pointer;
+	color: #fff;
+	text-transform: uppercase;
+	font-family: 'Poppins', sans-serif;
+	background-size: 200%;
+	transition: .5s;
+	position: absolute;
+	top:90%;
+	right: 70%;
+}
+
+.taskBtn4:hover{
+	background-position: right;
 }
 
 
