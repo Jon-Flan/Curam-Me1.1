@@ -181,7 +181,7 @@ app.get('/completed', function(req,res){
 //route to log a task done in database
 app.post('/taskDone/:Task_ID', function(req,res){
 	var date = new Date();
-    var hours = date.getHours(1) < 10 ? "0" + date.getHours() : date.getHours();
+    var hours = date.getHours(1) < 10 ? "0" + date.getHours(1) : date.getHours();
     var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     var time = hours + ":" + minutes + ":" + seconds;
@@ -311,7 +311,7 @@ app.post('/Vitals/:P_ID', function(req, res)
 	var BP = req.body.BP;
 	var Fluids = req.body.Fluid;
     var date = new Date();
-    var hours = date.getHours(1) < 10 ? "0" + date.getHours() : date.getHours();
+    var hours = date.getHours(1) < 10 ? "0" + date.getHours(1) : date.getHours();
     var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
     var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
     var time = hours + ":" + minutes + ":" + seconds;
@@ -359,7 +359,7 @@ app.post('/Prn/:P_ID', function(req,res){
 	var PRN = req.body.PRN;
 	var Reason = req.body.Reason;
         var date = new Date();
-        var hours = date.getHours(1) < 10 ? "0" + date.getHours() : date.getHours();
+        var hours = date.getHours(1) < 10 ? "0" + date.getHours(1) : date.getHours();
         var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
         var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
         var time = hours + ":" + minutes + ":" + seconds;
