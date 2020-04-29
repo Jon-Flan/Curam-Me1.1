@@ -306,7 +306,11 @@ app.post('/Vitals/:P_ID', function(req, res)
 	var HR = req.body.HR;
 	var BP = req.body.BP;
 	var Fluids = req.body.Fluid;
-	var time = new Date().toLocaleTimeString();
+    var date = new Date();
+    var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+    var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+    var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+    var time = hours + ":" + minutes + ":" + seconds;
 
 	try{
 		connection.query("INSERT INTO Vitals (V_ID, P_ID, HR, BP, Fluids, Time, Date, S_ID) VALUES(Null, ?, ?, ?, ?, ?, '2020-05-05', ?);",[req.params.P_ID, HR, BP, Fluids, time, req.session.username ] , function(err, results, fields){
@@ -350,7 +354,11 @@ app.get('/prn/:P_ID', function(req, res){
 app.post('/Prn/:P_ID', function(req,res){
 	var PRN = req.body.PRN;
 	var Reason = req.body.Reason;
-	var time = new Date().toLocaleTimeString();
+        var date = new Date();
+        var hours = date.getHours() < 10 ? "0" + date.getHours() : date.getHours();
+        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+        var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+        var time = hours + ":" + minutes + ":" + seconds;
 
 	try{
 		connection.query("INSERT INTO PRN_Dispense (Disp_ID, P_ID, Meds_Dispensed, Reason, S_ID, Time, Date) VALUES(Null, ?, ?, ?, ?, ?, '2020-05-05');",[req.params.P_ID, PRN, Reason, req.session.username, time], function(err, results, fields){
