@@ -42,7 +42,7 @@ app.set('view engine','ejs');
 
 
 //create and provide the server port for the app
-app.listen(8080, function(){
+app.listen(1337, function(){
 	console.log("Server is running correctly");
 });
 
